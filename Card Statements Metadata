@@ -1,1 +1,138 @@
-/YAML FILE Demo/
+dataset:
+    name: &name User Info
+    description: User-identifying information
+    application: Mono Credit Applications Service
+    domain: Card Acquisitions
+    owner: Mike Kuhlen
+
+interfaces:
+  - type: RDS
+    name: User Info in Mono
+    description: The userinfo table in the Mono database.
+    status: Active
+    location: Mono db userinfo table.
+    access: Anyone with access to the mono production db or its follower.
+  - type: RDS
+    name: User Info in Snowflake
+    description: Daily batch update to Snowflake of the userinfo table.
+    status: Active
+    location: EDW_DB.PUBLIC.USERINFO_R
+    access: USER_SRC_LDC_SECURED_ROLE
+  - type: RDS
+    name: User Info in Snowflake no-PII
+    description: Daily batch update to Snowflake of the non-PII columns of userinfo table.
+    status: Active
+    location: EDW_DB.PUBLIC.USERINFO
+    access: USER_SRC_LDC_ROLE
+
+elements:
+  - name: id
+    description: The id of the user info entry.
+    label: Key Element
+  - name: firstname
+    description: The first name of the customer.
+    label: Individual Name
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: middlename
+    description: The middle name of the customer.
+    label: Individual Name
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: lastname
+    description: The last name of the customer.
+    label: Individual Name
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: mobilephone
+    description: The customer's mobile phone number.
+    label: Phone Number
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: user_id
+    description: The id of the user.
+    label: Key Element
+  - name: dob
+    description: The date of birth of the customer.
+    label: Age
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: ssn
+    description: The last four digits of the customer's social security number.
+    label: Social Security Number
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: ssn_encrypted
+    description: The customer's social security number, encrypted.
+    label: Social Security Number
+    interfaces:
+      - [RDS, User Info in Mono]
+  - name: ssnhash
+    description: An MD5 hash of the customer's social security number.
+    label: Social Security Number
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+    interface_attributes:
+        [RDS, User Info in Mono]:
+            treatment: ANONYMIZED
+        [RDS, User Info in Snowflake]:
+            treatment: ANONYMIZED
+  - name: homephone
+    description: The customer's home phone number.
+    label: Phone Number
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: isuscitizen
+    description: Whether the customer is a US citizen or not.
+    label: Citizenship
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: driverslicensenumber
+    description: The customer's driver's license number.
+    label: Drivers License
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: driverslicensestate
+    description: The state of the customer's driver's license.
+    label: Drivers License
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: ismarried
+    description: Whether the customer is married or not.
+    label: Marital Status
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: lastmobilephonechangedate
+    description: The date that the customer last changed their mobile phone number.
+    label: Customer Activity Date
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: version
+    description: The version of this userinfo entry.
+    label: Software Implementation Detail
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: lastedited
+    description: The timestamp when this userinfo entry was last edited.
+    label: Mission Lane Activity Date
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: etl_update_tmstmp
+    description: Automatically generated timestamp indicating when this record was inserted.
+    label: Mission Lane Activity Date
+
