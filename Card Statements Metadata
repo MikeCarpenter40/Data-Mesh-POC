@@ -1,34 +1,29 @@
 dataset:
-    name: &name User Info
-    description: User-identifying information
+    name: Clip Results
+    description: The clip results table provides information on customers who have the potential to recieve a CLIP for their account. CLIPs are provided to customers who meet criteria based on their acocunt standing and ability to meet their financial commitments. Contents within the table provide context to the results of cusotmers looking to recieve a CLIP in addition to the data that was used at the time of decisioning.
     application: Mono Credit Applications Service
-    domain: Card Acquisitions
-    owner: Mike Kuhlen
+    domain: Card Customer Management
+    owner: Richard Schliph
 
 interfaces:
   - type: RDS
     name: User Info in Mono
-    description: The userinfo table in the Mono database.
+    description: The CLIP RESULTS table in the Mono database.
     status: Active
-    location: Mono db userinfo table.
+    location: Mono db CLIP RESULTS table.
     access: Anyone with access to the mono production db or its follower.
   - type: RDS
-    name: User Info in Snowflake
+    name: CLIP RESULTS in Snowflake
     description: Daily batch update to Snowflake of the userinfo table.
     status: Active
-    location: EDW_DB.PUBLIC.USERINFO_R
-    access: USER_SRC_LDC_SECURED_ROLE
-  - type: RDS
-    name: User Info in Snowflake no-PII
-    description: Daily batch update to Snowflake of the non-PII columns of userinfo table.
-    status: Active
-    location: EDW_DB.PUBLIC.USERINFO
-    access: USER_SRC_LDC_ROLE
+    location: EDW_DB.PUBLIC.CLIP_RESULTS
+    access: Anyone with read access to EDW_DB.PUBLIC
+  
 
 elements:
-  - name: id
-    description: The id of the user info entry.
-    label: Key Element
+  - name: Policy
+    description:The credit policy in which the account was decisioned upon.
+    label: Policy
   - name: firstname
     description: The first name of the customer.
     label: Individual Name
