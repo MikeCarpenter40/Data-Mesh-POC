@@ -1,0 +1,7 @@
+# recommended by TF folks
+*.tfstate
+*.tfstate.backup
+*.tfstate.*.backup
+.terraform/
+.DS_Store
+*.swp
