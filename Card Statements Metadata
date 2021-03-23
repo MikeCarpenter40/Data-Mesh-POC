@@ -23,32 +23,32 @@ interfaces:
 elements:
   - name: Policy
     description:The credit policy in which the account was decisioned upon.
-    label: Policy
-  - name: firstname
-    description: The first name of the customer.
-    label: Individual Name
+    label: Credit Policy Name
+  - name: Identifer
+    description: Unique identifer for the record within the CLIP results table. This is the primary key
+    label: Key Element
     interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: middlename
-    description: The middle name of the customer.
-    label: Individual Name
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIPRESULTS in Snowflake]
+  - name: Date Notified
+    description: Date in which the account holder was notified that their account was approved for a CLIP.
+    label: Date
     interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: lastname
-    description: The last name of the customer.
-    label: Individual Name
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
+  - name: Decision Data
+    description: Data points used to determine whether the customer was eligible to recieve a CLIP.
+    label: Mission Lane Customer Decision
     interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: mobilephone
-    description: The customer's mobile phone number.
-    label: Phone Number
+      - [RDS, Decision Data in Mono]
+      - [RDS, Decision Data in Snowflake]
+  - name: Credit Limit
+    description: Credit line limit after the account was decisioned for a CLIP.
+    label: Mission Lane Customer Decision
     interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: user_id
+      - [RDS, Credit Limit in Mono]
+      - [RDS, Credit Limit in Snowflake]
+  - name: Date Executed
     description: The id of the user.
     label: Key Element
   - name: dob
