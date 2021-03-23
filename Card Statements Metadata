@@ -29,7 +29,7 @@ elements:
     label: Key Element
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
-      - [RDS, CLIPRESULTS in Snowflake]
+      - [RDS, CLIP RESULTS in Snowflake]
   - name: Date Notified
     description: Date in which the account holder was notified that their account was approved for a CLIP.
     label: Date
@@ -40,26 +40,23 @@ elements:
     description: Data points used to determine whether the customer was eligible to recieve a CLIP.
     label: Mission Lane Customer Decision
     interfaces:
-      - [RDS, Decision Data in Mono]
-      - [RDS, Decision Data in Snowflake]
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
   - name: Credit Limit
     description: Credit line limit after the account was decisioned for a CLIP.
     label: Mission Lane Customer Decision
     interfaces:
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
+  - name: Pre Clip Line Limit
+    description: Credit line limit before the account was reviewed for a CLIP.
+    label: Customer Activity Date
+    interfaces:
       - [RDS, Credit Limit in Mono]
       - [RDS, Credit Limit in Snowflake]
-  - name: Date Executed
-    description: The id of the user.
+  - name: Card Identifier
+    description: Unique identifer for the credit card product.
     label: Key Element
-  - name: dob
-    description: The date of birth of the customer.
-    label: Age
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: ssn
-    description: The last four digits of the customer's social security number.
-    label: Social Security Number
     interfaces:
       - [RDS, User Info in Mono]
       - [RDS, User Info in Snowflake]
@@ -68,65 +65,6 @@ elements:
     label: Social Security Number
     interfaces:
       - [RDS, User Info in Mono]
-  - name: ssnhash
-    description: An MD5 hash of the customer's social security number.
-    label: Social Security Number
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-    interface_attributes:
-        [RDS, User Info in Mono]:
-            treatment: ANONYMIZED
-        [RDS, User Info in Snowflake]:
-            treatment: ANONYMIZED
-  - name: homephone
-    description: The customer's home phone number.
-    label: Phone Number
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: isuscitizen
-    description: Whether the customer is a US citizen or not.
-    label: Citizenship
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: driverslicensenumber
-    description: The customer's driver's license number.
-    label: Drivers License
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: driverslicensestate
-    description: The state of the customer's driver's license.
-    label: Drivers License
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: ismarried
-    description: Whether the customer is married or not.
-    label: Marital Status
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: lastmobilephonechangedate
-    description: The date that the customer last changed their mobile phone number.
-    label: Customer Activity Date
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: version
-    description: The version of this userinfo entry.
-    label: Software Implementation Detail
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: lastedited
-    description: The timestamp when this userinfo entry was last edited.
-    label: Mission Lane Activity Date
-    interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
   - name: etl_update_tmstmp
     description: Automatically generated timestamp indicating when this record was inserted.
     label: Mission Lane Activity Date
