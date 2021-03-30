@@ -24,31 +24,34 @@ elements:
   - name: Policy
     description:The credit policy in which the account was decisioned upon.
     label: Credit Policy Name
-  - name: Identifer
+   - name: Outcome
+    description: The outcome of the account review for a CLIP.
+    label: Mission Lane Customer Decision
+  - name: Id
     description: Unique identifer for the record within the CLIP results table. This is the primary key
     label: Key Element
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
       - [RDS, CLIP RESULTS in Snowflake]
-  - name: Date Notified
+  - name: date_notified
     description: Date in which the account holder was notified that their account was approved for a CLIP.
     label: Date
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
       - [RDS, CLIP RESULTS in Snowflake]
-  - name: Decision Data
+  - name: decision_data
     description: Data points used to determine whether the customer was eligible to recieve a CLIP.
     label: Mission Lane Customer Decision
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
       - [RDS, CLIP RESULTS in Snowflake]
-  - name: Credit Limit
+  - name: credit_limit
     description: Credit line limit after the account was decisioned for a CLIP.
     label: Mission Lane Customer Decision
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
       - [RDS, CLIP RESULTS in Snowflake]
-  - name: Pre Clip Line Limit
+  - name: pre_clip_line_limit
     description: Credit line limit before the account was reviewed for a CLIP.
     label: Customer Activity Date
     interfaces:
@@ -60,9 +63,9 @@ elements:
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
       - [RDS, CLIP RESULTS in Snowflake]
-  - name: Pre Clip Line Limit
-    description: Credit line limit before the account was reviewed for a CLIP.
-    label: Social Security Number
+  - name: post_clip_line_limit
+    description: Credit line limit after the account was reviewed for a CLIP.
+    label: Mission Lane Customer Decision
     interfaces:
       - [RDS, CLIP RESULTS in Mono]
       - [RDS, CLIP RESULTS in Snowflake]
