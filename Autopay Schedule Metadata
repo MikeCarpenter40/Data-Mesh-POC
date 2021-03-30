@@ -1,0 +1,80 @@
+dataset:
+    name: Autopay Schedule
+    description: This data provides information regarding customers who have enrolled, or attempted to enroll in autopayment.
+    application: Mono Credit Applications Service
+    domain: Card Operations
+    owner: Dave Bader
+
+interfaces:
+  - type: RDS
+    name: User Info in Mono
+    description: The userinfo table in the Mono database.
+    status: Active
+    location: Mono db userinfo table.
+    access: Anyone with access to the mono production db or its follower.
+  - type: RDS
+    name: User Info in Snowflake
+    description: Daily batch update to Snowflake of the userinfo table.
+    status: Active
+    location: EDW_DB.PUBLIC.autopay_schedule
+    access: USER_SRC_LDC_SECURED_ROLE
+
+
+elements:
+  - name: EFTA_id
+    description: Electronic Funds Transfer Act ID. When a customer agrees to have autopay enabled, they must consent in alignment with EFTA.
+    label: Key Element
+  - name: Actor
+    description: What was the actor, or executor, setting the customer to autopay for their statement.
+    label: Individual Name
+    interfaces:
+      - [RDS, Autopay Schedule in Mono]
+      - [RDS, Autopay Schedule in Snowflake]
+  - name: Policy Bundle Identifer
+    description: ID for the policy bundle.
+    label: Key Element
+    interfaces:
+      - [RDS, Autopay Schedule in Mono]
+      - [RDS, Autopay Schedule in Snowflake]
+  - name: Account Identifer
+    description: Unique identifier for the customer account.
+    label: Key Element
+    interfaces:
+      - [RDS, AutoPay Schedule in Mono]
+      - [RDS, AutoPay Schedule in Snowflake]
+  - name: Status
+    description: Status of the autopay scheduling. For accounts associated with web-dash as the actor, "active"  values should be considered synoymous with "complete"
+    label: Customer Status
+    interfaces:
+      - [RDS, AutoPay Schedule in Mono]
+      - [RDS, AutoPay Schedule in Snowflake]
+  - name: User Identifier
+    description: Unique ID for records in the autopay schedule table.
+    label: Key Element
+  - name: Account Type
+    description: The type of account set to autopay. This should be card.
+    label: Key Element
+    interfaces:
+      - [RDS, AutoPay Schedule in Mono]
+      - [RDS, AutoPay Schedule in Snowflake]
+  - name: Last Edited Timestamp
+    description: The data and timestamp in which the autopay schedule was last adjusted.
+    label: Mission Lane Activity Date
+    interfaces:
+      - [RDS, Autopay Schedule in Mono]
+      - [RDS, Autopay Schedule in Snowflake]
+  - name: Created Timestamp
+    description: The date and timestamp in which the autopay schedule event was first created.
+    label: Mission Lane Activity Date
+    interfaces:
+      - [RDS, Autopay Schedule in Mono]
+      - [RDS, Autopay Schedule in Snowflake]
+  - name: Schedule Data
+    description: Payment amount and payment date for the autopayment.
+    label: Mission Lane Activity Date
+    interfaces:
+      - [RDS, User Info in Mono]
+      - [RDS, User Info in Snowflake]
+  - name: etl_update_tmstmp
+    description: Automatically generated timestamp indicating when this record was inserted.
+    label: Mission Lane Activity Date
