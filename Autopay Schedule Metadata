@@ -30,13 +30,13 @@ elements:
     interfaces:
       - [RDS, Autopay Schedule in Mono]
       - [RDS, Autopay Schedule in Snowflake]
-  - name: Policy Bundle Identifer
+  - name: policy_bundle_id
     description: ID for the policy bundle.
     label: Key Element
     interfaces:
       - [RDS, Autopay Schedule in Mono]
       - [RDS, Autopay Schedule in Snowflake]
-  - name: Account Identifer
+  - name: account_id
     description: Unique identifier for the customer account.
     label: Key Element
     interfaces:
@@ -48,28 +48,28 @@ elements:
     interfaces:
       - [RDS, AutoPay Schedule in Mono]
       - [RDS, AutoPay Schedule in Snowflake]
-  - name: User Identifier
+  - name: ID
     description: Unique ID for records in the autopay schedule table.
     label: Key Element
-  - name: Account Type
+  - name: account_type
     description: The type of account set to autopay. This should be card.
     label: Key Element
     interfaces:
       - [RDS, AutoPay Schedule in Mono]
       - [RDS, AutoPay Schedule in Snowflake]
-  - name: Last Edited Timestamp
+  - name: last_edited_tmpstmp
     description: The data and timestamp in which the autopay schedule was last adjusted.
     label: Mission Lane Activity Date
     interfaces:
       - [RDS, Autopay Schedule in Mono]
       - [RDS, Autopay Schedule in Snowflake]
-  - name: Created Timestamp
+  - name: Created_tmstmp
     description: The date and timestamp in which the autopay schedule event was first created.
     label: Mission Lane Activity Date
     interfaces:
       - [RDS, Autopay Schedule in Mono]
       - [RDS, Autopay Schedule in Snowflake]
-  - name: Schedule Data
+  - name: schedule_data
     description: Payment amount and payment date for the autopayment.
     label: Mission Lane Activity Date
     interfaces:
