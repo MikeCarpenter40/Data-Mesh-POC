@@ -7,7 +7,7 @@ dataset:
 
 interfaces:
   - type: RDS
-    name: User Info in Mono
+    name: CLIP RESULTS in Mono
     description: The CLIP RESULTS table in the Mono database.
     status: Active
     location: Mono db CLIP RESULTS table.
@@ -52,20 +52,23 @@ elements:
     description: Credit line limit before the account was reviewed for a CLIP.
     label: Customer Activity Date
     interfaces:
-      - [RDS, Credit Limit in Mono]
-      - [RDS, Credit Limit in Snowflake]
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
   - name: Card Identifier
     description: Unique identifer for the credit card product.
     label: Key Element
     interfaces:
-      - [RDS, User Info in Mono]
-      - [RDS, User Info in Snowflake]
-  - name: ssn_encrypted
-    description: The customer's social security number, encrypted.
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
+  - name: Pre Clip Line Limit
+    description: Credit line limit before the account was reviewed for a CLIP.
     label: Social Security Number
     interfaces:
-      - [RDS, User Info in Mono]
-  - name: etl_update_tmstmp
-    description: Automatically generated timestamp indicating when this record was inserted.
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
+  - name: Date Evaluated
+    description: The date in which the account was reviewed to recieve a CLIP.
     label: Mission Lane Activity Date
+      - [RDS, CLIP RESULTS in Mono]
+      - [RDS, CLIP RESULTS in Snowflake]
 
